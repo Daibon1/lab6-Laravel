@@ -2,18 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', function () {
     return "Chào mừng đến với Laravel";
 });
 Route::get('/about', function () {
     return "Họ tên: Nguyễn Văn Đại | Lớp: CNPM3 | MSSV: 23810310422";
 });
-Route::get('/contact', function () {
-    return view('contact');
-});
+
 Route::get('/tong/{a}/{b}', function ($a, $b) {
     $tong = $a + $b;
     return "Tổng của $a và $b là: $tong";
@@ -39,3 +40,22 @@ Route::get('/check-date/{day}/{month}/{year}', function ($day, $month, $year) {
     'month' => '([1-9]|1[0-2])',
     'year' => '[0-9]{4}'
 ]);
+
+use App\Http\Controllers\ProductController;
+
+Route::get('/products', [ProductController::class, 'list']);
+
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+
+
+
+
+Route::get('/bang-cuu-chuong/{n}', [HomeController::class, 'multiplication']);
